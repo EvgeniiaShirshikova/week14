@@ -28,3 +28,7 @@ h2 {
     grid-area: 2/2/3/3;
     color: black;
 }
+
+.bestfilms-list {
+    font-weight: bold;
+}

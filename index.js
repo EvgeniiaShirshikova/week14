@@ -50,6 +50,40 @@ const directors = [
     },
   ];
 
-  directors.forEach(function (item) {
+const directorsContainer = document.querySelector(".container");
+const directorTemplate = document.querySelector("#director-template").content;
 
-  });
+const directorInfo = directors.map(function (item) {
+  return {
+    name: item.name,
+    career: item.career,
+    films: item.films
+  };
+});
+  
+function render1() {
+  directorInfo.forEach(renderCard);
+}
+
+function renderCard({ name, career, films }) {
+  const directorElement = directorTemplate
+    .querySelector(".director-card")
+    .cloneNode(true);
+  directorElement.querySelector(".director-card__name").textContent = name;
+  directorElement.querySelector(".director-card__career").textContent = career;
+  directorElement.querySelector(".director-card__films").href = films;
+
+  directorsContainer.prepend(directorElement);
+}
+
+render1();
+
+const topFilmsList = directors.map(function (item) {
+  return item = ' '+item.top_rated_film;
+});
+const containerTopFilmsList = document.querySelector('.bestfilms-list');
+
+function render2() {
+  containerTopFilmsList.textContent = topFilmsList;
+}
+render2();
