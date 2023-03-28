@@ -19,6 +19,7 @@
 4. Как можно получить значение текстового поля из данной формы? (Форма одна)
 
 text=document.fld.field.value
+
 text=document.forms[0].field.value
 
 ```jsx
