@@ -73,7 +73,7 @@ function renderCard({ name, career, films }) {
   directorElement.querySelector(".director-card__career").textContent = career;
   directorElement.querySelector(".director-card__films").href = films;
 
-  directorsContainer.prepend(directorElement);
+  directorsContainer.append(directorElement);
 }
 
 render1();
