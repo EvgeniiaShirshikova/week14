@@ -50,40 +50,36 @@ const directors = [
     },
   ];
 
-const directorsContainer = document.querySelector(".container");
-const directorTemplate = document.querySelector("#director-template").content;
-
-const directorInfo = directors.map(function (item) {
-  return {
-    name: item.name,
-    career: item.career,
-    films: item.films
-  };
-});
+// функция для создания карточек
+function createCards() {
+  // указываем контейнер, в который нужно положить созданные карточки
+  const directorsContainer = document.querySelector(".container");
+  // указываем шаблон, по которому нужно создать карточку
+  const directorTemplate = document.querySelector("#director-template").content;
+  // функция для заполнения карточки
+  directors.forEach(function renderCard({ name, career, films }) {
+    // объявляем карточку, присваиваем ей шаблон и прописываем, что будем ее клонировать
+    const directorElement = directorTemplate.querySelector(".director-card").cloneNode(true);
+    // указываем в какую часть карточки подтягивать какую информацию из массива
+    directorElement.querySelector(".director-card__name").textContent = name;
+    directorElement.querySelector(".director-card__career").textContent = career;
+    directorElement.querySelector(".director-card__films").href = films;
   
-function render1() {
-  directorInfo.forEach(renderCard);
+    // добавляем карточки
+    directorsContainer.append(directorElement);
+  });
 }
+createCards();
 
-function renderCard({ name, career, films }) {
-  const directorElement = directorTemplate
-    .querySelector(".director-card")
-    .cloneNode(true);
-  directorElement.querySelector(".director-card__name").textContent = name;
-  directorElement.querySelector(".director-card__career").textContent = career;
-  directorElement.querySelector(".director-card__films").href = films;
-
-  directorsContainer.append(directorElement);
-}
-
-render1();
-
-const topFilmsList = directors.map(function (item) {
-  return item = ' '+item.top_rated_film;
-});
-const containerTopFilmsList = document.querySelector('.bestfilms-list');
-
-function render2() {
+// функция для заполнения списка фильмов
+function renderList() {
+  // создаем новый массив со списком лучших фильмов
+  const topFilmsList = directors.map(function (item) {
+    return item = ' '+item.top_rated_film;
+  });
+  //указываем див, в который нужно внести список
+  const containerTopFilmsList = document.querySelector('.bestfilms-list');
+// вносим в нужный див текстом данные массива
   containerTopFilmsList.textContent = topFilmsList;
 }
-render2();
+renderList();
